@@ -1,0 +1,1 @@
+import type { Metadata } from 'next';import { ContactBlock } from '@/components/sections';export const metadata:Metadata={title:'Contact and Book Now',description:'Book an appointment with JustWaxIt, luxury waxing studio in Twin Falls, Idaho.'};export default function Page(){return <main className="pt-10"><ContactBlock/></main>}

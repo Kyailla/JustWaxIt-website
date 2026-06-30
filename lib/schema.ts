@@ -1,0 +1,5 @@
+import { faqs, reviews, services, site } from './site';
+export function localBusinessSchema(){return {'@context':'https://schema.org','@type':'BeautySalon',name:site.name,description:site.tagline,url:site.url,telephone:site.phone,email:site.email,address:{'@type':'PostalAddress',addressLocality:'Twin Falls',addressRegion:'ID',addressCountry:'US'},areaServed:'Twin Falls, Idaho',priceRange:'$$',aggregateRating:{'@type':'AggregateRating',ratingValue:'5',reviewCount:String(reviews.length)},review:reviews.map(r=>({'@type':'Review',author:{'@type':'Person',name:r.name},reviewRating:{'@type':'Rating',ratingValue:r.rating},reviewBody:r.text}))}}
+export function serviceSchema(name:string,description:string){return {'@context':'https://schema.org','@type':'Service',name,description,areaServed:'Twin Falls, Idaho',provider:{'@type':'BeautySalon',name:site.name,url:site.url}}}
+export function faqSchema(){return {'@context':'https://schema.org','@type':'FAQPage',mainEntity:faqs.map(([q,a])=>({'@type':'Question',name:q,acceptedAnswer:{'@type':'Answer',text:a}}))}}
+export const allServicesSchema = services.map(s=>serviceSchema(s.title,s.description));

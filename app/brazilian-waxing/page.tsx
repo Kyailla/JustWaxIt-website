@@ -1,0 +1,5 @@
+import type { Metadata } from 'next';import Link from 'next/link';import { services } from '@/lib/site';import { serviceSchema } from '@/lib/schema';
+const slug = 'brazilian-waxing';
+const service = services.find(s=>s.slug===slug)!;
+export const metadata:Metadata={title:`${service.title} in Twin Falls, Idaho`,description:`Book ${service.title} at JustWaxIt, a luxury waxing studio in Twin Falls, Idaho.`};
+export default function Page(){return <main className="px-4 py-20"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(serviceSchema(service.title,service.description))}}/><div className="card mx-auto max-w-4xl rounded-3xl p-8"><p className="gold">{service.duration} • {service.price}</p><h1 className="mt-3 font-display text-5xl gold">{service.title} in Twin Falls, Idaho</h1><p className="mt-6 text-lg text-white/75">{service.description}</p><ul className="mt-6 grid gap-3 text-white/75 md:grid-cols-3"><li>Premium products</li><li>Comfort-first technique</li><li>Personalized aftercare</li></ul><Link href="/contact" className="mt-8 inline-block rounded-full bg-gold px-7 py-3 font-bold text-black">Book Now</Link></div></main>}
