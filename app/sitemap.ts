@@ -1,0 +1,2 @@
+import type { MetadataRoute } from 'next';import { posts, services, site } from '@/lib/site';
+export default function sitemap(): MetadataRoute.Sitemap {const now=new Date();return ['','services','about','reviews','faq','contact','blog',...services.map(s=>s.slug),...posts.map(p=>`blog/${p.slug}`)].map(path=>({url:`${site.url}/${path}`.replace(/\/$/,''),lastModified:now,changeFrequency:'monthly',priority:path===''?1:.8}));}
