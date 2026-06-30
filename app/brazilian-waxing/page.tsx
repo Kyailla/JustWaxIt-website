@@ -1,5 +1,23 @@
-import type { Metadata } from 'next';import Link from 'next/link';import { services } from '@/lib/site';import { serviceSchema } from '@/lib/schema';
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { FAQ } from '@/components/sections';
+import { services } from '@/lib/site';
+import { serviceSchema } from '@/lib/schema';
+
 const slug = 'brazilian-waxing';
-const service = services.find(s=>s.slug===slug)!;
-export const metadata:Metadata={title:`${service.title} in Twin Falls, Idaho`,description:`Book ${service.title} at JustWaxIt, a luxury waxing studio in Twin Falls, Idaho.`};
-export default function Page(){return <main className="px-4 py-20"><script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(serviceSchema(service.title,service.description))}}/><div className="card mx-auto max-w-4xl rounded-3xl p-8"><p className="gold">{service.duration} • {service.price}</p><h1 className="mt-3 font-display text-5xl gold">{service.title} in Twin Falls, Idaho</h1><p className="mt-6 text-lg text-white/75">{service.description}</p><ul className="mt-6 grid gap-3 text-white/75 md:grid-cols-3"><li>Premium products</li><li>Comfort-first technique</li><li>Personalized aftercare</li></ul><Link href="/contact" className="mt-8 inline-block rounded-full bg-gold px-7 py-3 font-bold text-black">Book Now</Link></div></main>}
+const service = services.find((item) => item.slug === slug)!;
+
+export const metadata: Metadata = {
+  title: 'Brazilian Wax Twin Falls Idaho | Private Luxury Waxing',
+  description: 'Book a Brazilian wax in Twin Falls, Idaho with JustWaxIt. Private, professional hard wax service with prep tips, aftercare, FAQs, and easy booking.',
+};
+
+const faqs = [
+  ['Is this service right for first-time clients?', 'Yes. Your appointment starts with a quick consultation, clear expectations, and honest guidance from a Twin Falls esthetician.'],
+  ['How do I book?', 'Use the Book Now button to request an appointment. A Vagaro booking link placeholder is ready to connect before launch.'],
+  ['How often should I return?', 'Most clients maintain best results on a consistent schedule. Waxing is usually 4–6 weeks, brows 3–5 weeks, and lash lifts 6–8 weeks.'],
+];
+
+export default function Page() {
+  return <main className="px-4 py-20"><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema(service.title, service.description)) }} /><article className="mx-auto max-w-5xl"><p className="gold uppercase tracking-[.25em]">Brazilian wax Twin Falls Idaho</p><h1 className="font-display mt-3 text-5xl gold">A smoother Brazilian wax experience in Twin Falls</h1><p className="mt-6 max-w-3xl text-lg text-white/75">Brazilian waxing is personal. At JustWaxIt, the service is discreet, efficient, and explained clearly so you can relax instead of guessing what comes next.</p><div className="mt-8 flex flex-wrap gap-4"><Link href="/contact" className="rounded-full bg-gold px-7 py-3 font-bold text-black">Book Now</Link><Link href="/services" className="rounded-full border border-[#d8b15f66] px-7 py-3 font-bold">Compare services</Link></div><section className="mt-12 grid gap-5 md:grid-cols-3">{service.benefits.map((benefit) => <div key={benefit} className="card rounded-3xl p-6"><h2 className="font-display text-2xl gold">{benefit}</h2><p className="mt-3 text-white/70">Luxury service should feel calm, clean, and specific to your skin, hair growth, and goals.</p></div>)}</section><section className="card mt-8 rounded-3xl p-8"><h2 className="font-display text-3xl gold">What to expect</h2><p className="mt-4 text-white/72">We begin with consultation, prep the skin or lashes carefully, perform the service with professional timing, and finish with simple home care instructions. If something is sensitive, say so—good beauty work includes communication.</p><h2 className="font-display mt-8 text-3xl gold">Aftercare tips</h2><p className="mt-4 text-white/72">Aftercare: keep the area cool and clean for 24 hours, avoid hot tubs, heavy workouts, fragrance, and tight clothing, then begin gentle exfoliation after 48 hours.</p></section><section className="mt-8 grid gap-5 md:grid-cols-2"><Link href="/brazilian-waxing" className="card rounded-3xl p-6">Brazilian waxing Twin Falls</Link><Link href="/brow-waxing-tint" className="card rounded-3xl p-6">Brow waxing Twin Falls</Link><Link href="/lash-lift-tint" className="card rounded-3xl p-6">Lash lift Twin Falls</Link><Link href="/justwaxit-academy" className="card rounded-3xl p-6">Waxing classes Idaho</Link></section></article><FAQ items={faqs} /></main>;
+}
